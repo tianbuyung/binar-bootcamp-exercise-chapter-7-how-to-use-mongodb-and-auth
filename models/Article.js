@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongooseDelete = require("mongoose-delete");
 
 const { Schema } = mongoose;
 
@@ -11,6 +12,13 @@ const articleSchema = new Schema(
   { timestamps: true }
 );
 
-const article = mongoose.model("Article", articleSchema);
+articleSchema.plugin(mongooseDelete, {
+  overrideMethods: "all",
+  deletedAt: true,
+  deletedBy: true,
+  deletedByType: String,
+});
 
-module.exports = article;
+const Articles = mongoose.model("articles", articleSchema);
+
+module.exports = Articles;
