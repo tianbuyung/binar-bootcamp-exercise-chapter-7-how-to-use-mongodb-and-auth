@@ -19,6 +19,6 @@ articleSchema.plugin(mongooseDelete, {
   deletedByType: String,
 });
 
-const Article = mongoose.model("articles", articleSchema);
+const Articles = mongoose.model("articles", articleSchema);
 
-module.exports = Article;
+module.exports = Articles;
