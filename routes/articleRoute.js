@@ -6,7 +6,11 @@ const articleController = new ArticleController();
 
 /* POST create a new article. */
 router.post("/create", articleController.createArticle);
-/* POST create a new article. */
-router.get("/", articleController.viewArticle);
+/* GET read all articles. */
+router.get("/view", articleController.viewArticle);
+/* PUT update a article. */
+router.put("/edit/:id", articleController.editArticle);
+/* DELETE update a article. */
+router.delete("/delete/:id", articleController.deleteArticle);
 
 module.exports = router;

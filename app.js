@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const { DATABASE_HOST, DATABASE_PORT, DATABASE_NAME } = process.env;
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -14,7 +16,9 @@ const articleRouter = require("./routes/articleRoute");
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/local");
+mongoose.connect(
+  `mongodb://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}`
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
