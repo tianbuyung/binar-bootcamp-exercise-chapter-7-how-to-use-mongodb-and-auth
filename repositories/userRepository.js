@@ -11,10 +11,10 @@ class UserRepository {
       return [err, null];
     }
   }
-  async viewOneUser(conditions) {
+  async viewOneUser(conditions, attributes) {
     let err = null;
     try {
-      const user = await User.findOne(conditions);
+      const user = await User.findOne(conditions, attributes);
       return [err, user];
     } catch (error) {
       err = error;

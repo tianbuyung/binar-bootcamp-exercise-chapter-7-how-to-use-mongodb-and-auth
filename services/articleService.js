@@ -6,8 +6,13 @@ class ArticleService {
     const conditions = payload.body;
     return await articleRepository.createArticle(conditions);
   }
-  async viewArticle(payload) {
-    return await articleRepository.viewArticle(payload);
+  async viewAllArticles(payload) {
+    return await articleRepository.viewArticles(payload);
+  }
+  async viewArticleWithAttributes(payload) {
+    const conditions = { id: true };
+    const attributes = { title: true };
+    return await articleRepository.viewArticles(conditions, attributes);
   }
   async editArticle(payload) {
     const conditions = { _id: payload.params.id };
