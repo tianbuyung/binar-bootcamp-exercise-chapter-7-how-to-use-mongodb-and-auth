@@ -4,8 +4,7 @@ const router = express.Router();
 const ArticleController = require("../controllers/articleController");
 const articleController = new ArticleController();
 
-const CheckAuthorization = require("../middleware/checkAuthorization");
-const restrict = new CheckAuthorization();
+const restrict = require("../middleware/checkAuthorization");
 
 const checkUserRole = require("../middleware/checkUserRole");
 
@@ -16,7 +15,7 @@ router.get(
   "/view",
   restrict.checkAuth,
   checkUserRole,
-  articleController.viewArticle
+  articleController.viewAllArticles
 );
 /* PUT update a article. */
 router.put("/edit/:id", restrict.checkAuth, articleController.editArticle);

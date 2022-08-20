@@ -30,6 +30,34 @@ class AuthController {
       });
     }
   }
+  async verifiedUser(req, res) {
+    const payload = req;
+    const [error, verifiedUser] = await authService.verifiedUser(payload);
+    if (error) {
+      res.status(400).json({
+        message: error,
+      });
+    } else {
+      res.status(200).json({
+        message: "Successfully verified your account.",
+      });
+    }
+  }
+  async resendEmailVerified(req, res) {
+    const payload = req;
+    const [error, verifiedUser] = await authService.resendEmailVerified(
+      payload
+    );
+    if (error) {
+      res.status(400).json({
+        message: error,
+      });
+    } else {
+      res.status(200).json({
+        message: "Succesfully send verification email.",
+      });
+    }
+  }
 }
 
 module.exports = AuthController;

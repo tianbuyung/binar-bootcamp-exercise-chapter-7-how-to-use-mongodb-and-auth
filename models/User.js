@@ -9,6 +9,9 @@ const userSchema = new Schema(
     email: String,
     password: String,
     role: { type: String, default: "writer" },
+    verifiedToken: String,
+    verifiedAt: { type: Date, default: null },
+    expiredTokenAt: { type: Date },
   },
   { timestamps: true }
 );

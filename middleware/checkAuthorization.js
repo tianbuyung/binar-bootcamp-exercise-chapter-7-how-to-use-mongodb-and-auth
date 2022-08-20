@@ -1,13 +1,15 @@
 const jwt = require("jsonwebtoken");
+const secretKey = process.env.JWT_SECRET_KEY;
 
-class CheckAuthorization {
-  async #secretKey() {
-    const secretKey = process.env.JWT_SECRET_KEY;
-    return secretKey;
-  }
-  checkAuth = async (req, res, next) => {
-    const token = req?.headers?.authorization.split(" ")[1];
-    const secretKey = await this.#secretKey();
+module.exports = {
+  checkAuth: async (req, res, next) => {
+    const bearerToken = req.headers.authorization;
+    if (!bearerToken) {
+      res.status(401).json({
+        message: "You're unauthorized",
+      });
+    }
+    const token = bearerToken.split(" ")[1];
     if (!token) {
       res.status(401).json({
         message: "Session expired",
@@ -23,7 +25,5 @@ class CheckAuthorization {
         next();
       });
     }
-  };
-}
-
-module.exports = CheckAuthorization;
+  },
+};

@@ -11,10 +11,10 @@ class ArticleRepository {
       return [err, null];
     }
   }
-  async viewArticle(payload) {
+  async viewArticles(conditions, attributes) {
     let err = null;
     try {
-      const article = await Article.find(payload);
+      const article = await Article.find(conditions, attributes);
       return [err, article];
     } catch (error) {
       err = error;

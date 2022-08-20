@@ -16,15 +16,15 @@ class ArticleController {
       });
     }
   }
-  async viewArticle(req, res) {
-    const [error, article] = await articleService.viewArticle();
+  async viewAllArticles(req, res) {
+    const [error, article] = await articleService.viewAllArticles();
     if (error) {
       res.status(400).json({
         message: error,
       });
     } else {
       res.status(200).json({
-        message: "Successfully view all profile",
+        message: "Successfully view all articles",
         article,
       });
     }
